@@ -13,7 +13,7 @@ module GooglePlaces
         :radius => radius,
         :sensor => sensor,
         :key => api_key,
-        :types => types,
+        :types => types
       )
 
       response['results'].map do |result|
