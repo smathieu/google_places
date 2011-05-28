@@ -5,13 +5,15 @@ module GooglePlaces
     def self.list(lat, lng, api_key, options = {})
       radius = options.delete(:radius) || 200
       sensor = options.delete(:sensor) || false
+      types = Array(options.delete(:types)).join('|') || []
       location = Location.new(lat, lng)
 
       response = Request.spots(
         :location => location.format,
         :radius => radius,
         :sensor => sensor,
-        :key => api_key
+        :key => api_key,
+        :types => types,
       )
 
       response['results'].map do |result|
